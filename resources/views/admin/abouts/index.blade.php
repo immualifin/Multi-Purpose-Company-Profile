@@ -43,8 +43,9 @@
                         </form>
                     </div>
                 </div>
+
                 @empty
-                <p class="text-indigo-950 text-xl font-bold">No About</p>
+                <p class="text-slate-500 text-sm">No abouts found</p>
                 @endforelse
 
             </div>

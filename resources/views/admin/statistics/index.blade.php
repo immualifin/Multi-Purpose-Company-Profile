@@ -1,4 +1,4 @@
-x-app-layout>
+<x-app-layout>
     <x-slot name="header">
         <div class="flex flex-row justify-between items-center">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -24,9 +24,7 @@ x-app-layout>
                     </div>
                     <div  class="hidden md:flex flex-col">
                         <p class="text-slate-500 text-sm">Date</p>
-                        <h3 class="text-indigo-950 text-xl font-bold">
-                        {{ $statistic->created_at->format('M d, Y') }}
-                    </h3>
+                        <h3 class="text-indigo-950 text-xl font-bold">{{ $statistic->created_at->format('M d, Y') }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3">
                         <a href="{{ route('admin.statistics.edit', $statistic) }}" class="font-bold py-4 px-6 bg-indigo-700 text-white rounded-full">
@@ -35,6 +33,7 @@ x-app-layout>
                         <form action="{{ route('admin.statistics.destroy', $statistic) }}" method="POST">
                             @csrf
                             @method('DELETE')
+
                             <button type="submit" class="font-bold py-4 px-6 bg-red-700 text-white rounded-full">
                                 Delete
                             </button>
@@ -43,7 +42,7 @@ x-app-layout>
                 </div>
 
                 @empty
-                <p class="text-indigo-950 text-xl font-bold">No Statistics</p>
+                    <p class="text-slate-500 text-sm">No statistics found.</p>
                 @endforelse
             </div>
         </div>

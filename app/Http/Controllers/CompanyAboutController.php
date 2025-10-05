@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAboutRequest;
 use App\Models\CompanyAbout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CompanyAboutController extends Controller
 {
@@ -21,15 +23,35 @@ class CompanyAboutController extends Controller
      */
     public function create()
     {
-        return view('admin.abouts.index');
+        return view('admin.abouts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAboutRequest $request)
     {
-        //
+        DB::transaction(function () use ($request) {
+            $validated = $request->validated();
+
+            if($request->hasFile('thumbnail')) {
+                $thumbnailPath = $request->file('thumbnail')->store('thumbnail', 'public');
+                $validated['thumbnail'] = $thumbnailPath;
+            }
+
+            $newDataRecord = CompanyAbout::create($validated);
+
+            if (!empty($validated['keypoints'])) {
+                foreach($validated['keypoints'] as $keypoint) {
+                    $newDataRecord->keypoints()->create(
+                    [
+                        'keypoint' => $keypoint
+                    ]);
+                }
+            }
+        });
+
+        return redirect()->route('admin.abouts.index');
     }
 
     /**
