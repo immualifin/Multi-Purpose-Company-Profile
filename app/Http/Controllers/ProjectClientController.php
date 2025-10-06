@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreClientRequest;
+use App\Http\Requests\UpdateClientRequest;
 use App\Models\ProjectClient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -39,9 +40,9 @@ class ProjectClientController extends Controller
                 $validated['avatar'] = $avatarPath;
             }
 
-            if ($request->hasFile('icon')) {
-                $iconPath = $request->file('icon')->store('icon', 'public');
-                $validated['icon'] = $iconPath;
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->store('logo', 'public');
+                $validated['logo'] = $logoPath;
             }
 
             $newDataRecord = ProjectClient::create($validated);
@@ -61,24 +62,45 @@ class ProjectClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ProjectClient $projectClient)
+    public function edit(ProjectClient $client)
     {
-        //
+        return view('admin.clients.edit', compact('client'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ProjectClient $projectClient)
+    public function update(UpdateClientRequest $request, ProjectClient $client)
     {
-        //
+        DB::transaction(function () use ($request, $client) {
+            $validated = $request->validated();
+
+            if ($request->hasFile('avatar')) {
+                $avatarPath = $request->file('avatar')->store('avatar', 'public');
+                $validated['avatar'] = $avatarPath;
+            }
+
+            if ($request->hasFile('logo')) {
+                $logoPath = $request->file('logo')->store('logo', 'public');
+                $validated['logo'] = $logoPath;
+            }
+
+            $client->update($validated);
+        });
+
+        return redirect()->route('admin.clients.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ProjectClient $projectClient)
+    public function destroy(ProjectClient $client)
     {
-        //
+        DB::transaction(function () use ($client) {
+            $client->delete();
+        });
+
+        return redirect()->route('admin.clients.index');
     }
 }
