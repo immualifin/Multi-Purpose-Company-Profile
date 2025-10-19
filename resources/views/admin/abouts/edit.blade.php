@@ -44,18 +44,12 @@
 
                         <div class="flex flex-col gap-y-5">
                             <x-input-label for="keypoints" :value="__('keypoints')" />
-                            <input type="text" class="py-3 rounded-lg border-slate-300 border" value="{{ $about->keypoints }}" name="keypoints[2]">
-
-@foreach ($about->keypoints as $keypoint => $point)
-        <input
-            type="text"
-            name="keypoints[{{ $keypoint }}]"
-            value="{{ old('keypoints.' . $keypoint, $point) }}"
-            class="py-3 rounded-lg border-slate-300 border"
-            placeholder="Keypoint {{ $keypoint + 1 }}"
-        >
-    @endforeach
-                        </div>
+                            @forelse($about->keypoints as $keypoint)
+                            <input type="text" class="py-3 rounded-lg border-slate-300 border" value="{{ $keypoint->keypoint }}" name="keypoint[]">
+                            @empty
+                            <input type="text" class="py-3 rounded-lg border-slate-300 border" placeholder="Write your keypoint" name="keypoint[]">
+                            @endforelse
+                         </div>
                         <x-input-error :messages="$errors->get('keypoint')" class="mt-2" />
                     </div>
 

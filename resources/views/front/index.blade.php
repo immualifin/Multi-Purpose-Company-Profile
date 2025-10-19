@@ -45,7 +45,7 @@
         @forelse($clients as $client)
         <div class="logo-card h-[68px] w-fit flex items-center shrink-0 border border-[#E8EAF2] rounded-[18px] p-4 gap-[10px] bg-white hover:border-cp-dark-blue transition-all duration-300">
         <div class="overflow-hidden h-9">
-          <img src="assets/logo/logo-54.svg" class="object-contain w-full h-full" alt="logo">
+          <img src="{{ Storage::url($client->logo) }}" class="object-contain w-full h-full" alt="logo">
         </div>
       </div>
         @empty
@@ -118,7 +118,7 @@
           <h2 class="font-bold text-4xl leading-[45px]">{{ $product->tagline }}</h2>
           <p class="leading-[30px] text-cp-light-grey">{{ $product->about }}</p>
         </div>
-        <a href="" class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Book Appointment</a>
+        <a href="{{ route('front.appointment') }}" class="bg-cp-dark-blue p-[14px_20px] w-fit rounded-xl hover:shadow-[0_12px_30px_0_#312ECB66] transition-all duration-300 font-bold text-white">Book Appointment</a>
       </div>
     </div>
     @empty
@@ -156,7 +156,7 @@
         <p>no data</p>
         @endforelse
 
-        <a href="team.html" class="view-all-card">
+        <a href="{{ route('front.team') }}" class="view-all-card">
           <div class="card bg-white flex flex-col h-full justify-center items-center p-[30px] gap-[30px] rounded-[20px] border border-white hover:shadow-[0_10px_30px_0_#D1D4DF80] hover:border-cp-dark-blue transition-all duration-300">
             <div class="w-[60px] h-[60px] flex shrink-0">
               <img src="assets/icons/profile-2user.svg" alt="icon">
@@ -286,7 +286,7 @@
               <div class="flex flex-col gap-[10px]">
                   <h2 class="font-bold text-4xl leading-[45px]">Frequently Asked Questions</h2>
               </div>
-              <a href="contact.html" class="p-5 bg-cp-black rounded-xl text-white w-fit font-bold">Contact Us</a>
+              <a href="{{ route('front.appointment') }}" class="p-5 bg-cp-black rounded-xl text-white w-fit font-bold">Contact Us</a>
           </div>
           <div class="flex flex-col gap-[30px] sm:w-[603px] shrink-0">
               <div class="flex flex-col p-5 rounded-2xl bg-white w-full">
@@ -337,70 +337,8 @@
       </div>
     </div>
   </div>
-  <footer class="bg-cp-black w-full relative overflow-hidden mt-20">
-    <div class="container max-w-[1130px] mx-auto flex flex-wrap gap-y-4 items-center justify-between pt-[100px] pb-[220px] relative z-10">
-      <div class="flex flex-col gap-10">
-        <div class="flex items-center gap-3">
-          <div class="flex shrink-0 h-[43px] overflow-hidden">
-              <img src="assets/logo/logo.svg" class="object-contain w-full h-full" alt="logo">
-          </div>
-          <div class="flex flex-col">
-            <p id="CompanyName" class="font-extrabold text-xl leading-[30px] text-white">ShaynaComp</p>
-            <p id="CompanyTagline" class="text-sm text-cp-light-grey">Build Futuristic Dreams</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-4">
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="assets/icons/youtube.svg" class="w-full h-full object-contain" alt="youtube">
-            </div>
-          </a>
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="assets/icons/whatsapp.svg" class="w-full h-full object-contain" alt="whatsapp">
-            </div>
-          </a>
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="assets/icons/facebook.svg" class="w-full h-full object-contain" alt="facebook">
-            </div>
-          </a>
-          <a href="">
-            <div class="w-6 h-6 flex shrink-0 overflow-hidden">
-              <img src="assets/icons/instagram.svg" class="w-full h-full object-contain" alt="instagram">
-            </div>
-          </a>
-        </div>
-      </div>
-      <div class="flex flex-wrap gap-[50px]">
-        <div class="flex flex-col w-[200px] gap-3">
-          <p class="font-bold text-lg text-white">Products</p>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">General Contract</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Building Assessment</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">3D Paper Builder</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Legal Constructions</a>
-        </div>
-        <div class="flex flex-col w-[200px] gap-3">
-          <p class="font-bold text-lg text-white">About</p>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">We’re Hiring</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Our Big Purposes</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Investor Relations</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Media Press</a>
-        </div>
-        <div class="flex flex-col w-[200px] gap-3">
-          <p class="font-bold text-lg text-white">Useful Links</p>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Privacy & Policy</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Terms & Conditions</a>
-          <a href="contact.html" class="text-cp-light-grey hover:text-white transition-all duration-300">Contact Us</a>
-          <a href="" class="text-cp-light-grey hover:text-white transition-all duration-300">Download Template</a>
-        </div>
-      </div>
-    </div>
-    <div class="absolute -bottom-[135px] w-full">
-      <p class="font-extrabold text-[250px] leading-[375px] text-center text-white opacity-5">SHAYNA</p>
-    </div>
-  </footer>
-  <div id="video-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+<x-footer />
+    <div id="video-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div class="relative p-4 w-full lg:w-1/2 max-h-full">
           <!-- Modal content -->
           <div class="relative bg-white rounded-[20px] overflow-hidden shadow">
