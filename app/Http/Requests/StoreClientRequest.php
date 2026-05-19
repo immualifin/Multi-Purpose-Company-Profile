@@ -24,8 +24,8 @@ class StoreClientRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'occupation' => ['required', 'string', 'max:255'],
-            'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'logo' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'avatar' => ['required', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
+            'logo' => ['required', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ];
     }
 }

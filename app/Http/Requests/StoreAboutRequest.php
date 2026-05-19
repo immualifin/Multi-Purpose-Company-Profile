@@ -23,7 +23,7 @@ class StoreAboutRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'thumbnail' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'thumbnail' => ['required', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
             'type' => ['required', 'string', 'max:255'],
             'keypoints.*' => ['required', 'string', 'max:255'],
         ];

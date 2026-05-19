@@ -24,7 +24,7 @@ class StoreStatisticRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'goal' => ['required', 'string', 'max:255'],
-            'icon' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'icon' => ['required', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ];
     }
 }

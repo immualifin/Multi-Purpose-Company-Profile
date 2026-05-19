@@ -24,8 +24,8 @@ class UpdateClientRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'occupation' => ['required', 'string', 'max:255'],
-            'avatar' => ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
-            'logo' => ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+            'avatar' => ['sometimes', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
+            'logo' => ['sometimes', 'mimes:jpeg,png,jpg,gif,svg', 'max:10240'],
         ];
     }
 }
